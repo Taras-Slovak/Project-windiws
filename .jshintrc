@@ -7,7 +7,7 @@
 	"maxlen": 200,
 	"trailing": true,
 	"curly": true,
-	"strict": "implied",
+	"strict": false,
 	"browser": true,
 	"devel": true,
 	"jquery": true,
