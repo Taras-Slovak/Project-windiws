@@ -17849,6 +17849,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//FORMS
 var forms = function forms() {
   var form = document.querySelectorAll('form'),
       inputs = document.querySelectorAll('input'),
@@ -17938,6 +17939,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_0__);
 
 
+//MODALS
 var modals = function modals() {
   function bindModal(triggerSelector, modalSelector, closeSelector) {
     var trigger = document.querySelectorAll(triggerSelector),
@@ -17996,6 +17998,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//TABS
 var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeClass) {
   var header = document.querySelector(headerSelector),
       tab = document.querySelectorAll(tabSelector),
