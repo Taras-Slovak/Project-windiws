@@ -17821,7 +17821,7 @@ window.addEventListener('DOMContentLoaded', function () {
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider', '.glazing_block', '.glazing_content', 'active');
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content>div>div', 'after_click');
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
-  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])(modalState);
 });
 
 /***/ }),
@@ -17845,7 +17845,7 @@ var changeModalState = function changeModalState(state) {
   var windowFrom = document.querySelectorAll('.balcon_icons_img'),
       windowWidth = document.querySelectorAll('#width'),
       windowHeight = document.querySelectorAll('#height'),
-      windowType = document.querySelectorAll('#type'),
+      windowType = document.querySelectorAll('#view_type'),
       windowProfile = document.querySelectorAll('.checkbox');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_1__["default"])('#width');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_1__["default"])('#height');
@@ -17855,22 +17855,31 @@ var changeModalState = function changeModalState(state) {
       item.addEventListener(event, function () {
         switch (item.nodeName) {
           case 'SPAN':
-            console.log('span');
+            state[prop] = i;
             break;
 
           case 'INPUT':
             if (item.getAttribute('type') === 'checkbox') {
-              console.log('checkbox');
+              i === 0 ? state[prop] = "Cold" : state[prop] = 'Warm';
+              elem.forEach(function (box, j) {
+                box.checked = false;
+
+                if (i === j) {
+                  box.checked = true;
+                }
+              });
             } else {
-              console.log('input');
+              state[prop] = item.value;
             }
 
             break;
 
           case 'SELECT':
-            console.log('select');
+            state[prop] = item.value;
             break;
         }
+
+        console.log(state);
       });
     });
   }
@@ -17880,6 +17889,12 @@ var changeModalState = function changeModalState(state) {
   bindActionToElement('input', windowWidth, 'width');
   bindActionToElement('change', windowType, 'type');
   bindActionToElement('change', windowProfile, 'profile');
+  var formDelet = document.querySelectorAll('form');
+  formDelet.forEach(function (btn) {
+    btn.addEventListener("submit", function () {
+      state = {};
+    });
+  });
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (changeModalState);
@@ -17942,7 +17957,7 @@ __webpack_require__.r(__webpack_exports__);
 
  //FORMS
 
-var forms = function forms() {
+var forms = function forms(state) {
   var form = document.querySelectorAll('form'),
       inputs = document.querySelectorAll('input');
   Object(_checkNumInputs__WEBPACK_IMPORTED_MODULE_5__["default"])('input[name = "user_phone"]');
@@ -17994,6 +18009,13 @@ var forms = function forms() {
       statusMessage.classList.add('status');
       item.appendChild(statusMessage);
       var formData = new FormData(item);
+
+      if (item.getAttribute('data-calc') === 'end') {
+        for (var key in state) {
+          formData.append(key, state[key]);
+        }
+      }
+
       postData('assets/server.php', formData).then(function (res) {
         console.log(res);
         statusMessage.textContent = message.seccess;
@@ -18004,6 +18026,12 @@ var forms = function forms() {
         setTimeout(function () {
           statusMessage.remove();
         }, 5000);
+        setTimeout(function () {
+          document.querySelectorAll('[data-modal]').forEach(function (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = "";
+          });
+        }, 7000);
       });
     });
   });
