@@ -8,11 +8,14 @@ import forms from './modules/forms';
 
 import changeModalState from './modules/changeModalState';
 
+import timer from './modules/timer';
+
 
 window.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
     let modalState = {};
+    let deadLine = '2022-03-09';
     changeModalState(modalState);
 
     modals();
@@ -21,7 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
     tabs('.balcon_icons', '.balcon_icons_img', '.big_img > img', 'do_image_more', 'inline-block');
     forms(modalState);
 
+    timer('.container1', deadLine);
 
-    
 
 });
