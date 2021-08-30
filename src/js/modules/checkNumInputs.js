@@ -4,7 +4,11 @@ const checkNumInputs = (selector) => {
 
     numInputs.forEach(item => {
         item.addEventListener('input', () => {
+
+            
             item.value = item.value.replace(/\D/, "");
+
+
                                 // .replace(/[^0-9-+ ]/g, "");
         });
     });

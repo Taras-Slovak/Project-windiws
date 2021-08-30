@@ -40,9 +40,10 @@ const forms = (state) => {
             item.appendChild(statusMessage);
 
             const formData = new FormData(item);
-            if (item.getAttribute('data-calc')==='end') {
-                for (let key in state){
-                    formData.append(key,state[key]);
+            if (item.getAttribute('data-calc') === 'end') {
+
+                for (let key in state) {
+                    formData.append(key, state[key]);
                 }
             }
 
@@ -57,8 +58,17 @@ const forms = (state) => {
                     setTimeout(() => {
                         statusMessage.remove();
                     }, 5000);
-                });
 
+                    setTimeout(() => {
+
+                        document.querySelectorAll('[data-modal]').forEach(modal => {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = "";
+                        });
+
+                    }, 7000);
+
+                });
         });
     });
 

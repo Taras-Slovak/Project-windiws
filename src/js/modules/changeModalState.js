@@ -12,15 +12,20 @@ const changeModalState = (state) => {
 
     function bindActionToElement(event, elem, prop) {
         elem.forEach((item, i) => {
+
             item.addEventListener(event, () => {
+
                 switch (item.nodeName) {
+
                     case 'SPAN':
                         state[prop] = i;
+
                         break;
 
                     case 'INPUT':
+
                         if (item.getAttribute('type') === 'checkbox') {
-                            i === 0 ? state[prop] = "Cold" : state[prop] = "Warm";
+                            i === 0 ? state[prop] = "Cold" : state[prop] = 'Warm';
                             elem.forEach((box, j) => {
                                 box.checked = false;
                                 if (i === j) {
@@ -38,6 +43,7 @@ const changeModalState = (state) => {
                 }
                 console.log(state);
             });
+
         });
     }
     bindActionToElement('click', windowFrom, 'form');
@@ -45,6 +51,15 @@ const changeModalState = (state) => {
     bindActionToElement('input', windowWidth, 'width');
     bindActionToElement('change', windowType, 'type');
     bindActionToElement('change', windowProfile, 'profile');
+
+    const formDelet = document.querySelectorAll('form');
+
+    formDelet.forEach(btn => {
+        btn.addEventListener("submit", () => {
+            state = {};
+        });
+    });
+
 };
 
 export default changeModalState;

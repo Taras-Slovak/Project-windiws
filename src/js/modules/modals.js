@@ -7,7 +7,9 @@ const modals = () => {
 			windows = document.querySelectorAll('[data-modal]');
 
 		trigger.forEach((item) => {
+
 			item.addEventListener("click", (e) => {
+
 				if (e.target) {
 					e.preventDefault();
 				}
@@ -19,6 +21,7 @@ const modals = () => {
 				modal.style.display = "block";
 				document.body.style.overflow = "hidden";
 				// document.body.classList.add('modal-open');
+
 			});
 		});
 
@@ -32,6 +35,7 @@ const modals = () => {
 		});
 
 		modal.addEventListener("click", (e) => {
+			
 			if (e.target === modal && closeClickOverlay) {
 				windows.forEach(item => {
 					item.style.display = "none";
@@ -67,6 +71,8 @@ const modals = () => {
 		'.popup_calc',
 		'.popup_calc_close'
 	);
+
+	
 
 	bindModal(
 		'.popup_calc_button',
