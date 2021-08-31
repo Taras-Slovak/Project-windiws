@@ -52,9 +52,22 @@ const modals = () => {
 	}
 
 	function showModalByTime(selector, time) {
+
 		setTimeout(() => {
-			document.querySelector(selector).style.display = 'block';
-			document.body.style.overflow = 'hidden';
+
+			let display;
+
+			document.querySelectorAll('[data-modal]').forEach(item => {
+				if (getComputedStyle(item).display !== 'none') {
+					display = 'block';
+				}
+			});
+
+			if (!display) {
+				document.querySelector(selector).style.display = 'block';
+				document.body.style.overflow = 'hidden';
+			}
+
 		}, time);
 	}
 
@@ -105,7 +118,7 @@ const modals = () => {
 		false
 	);
 
-	// showModalByTime('.popup', 3000);
+	showModalByTime('.popup', 6000);
 
 };
 
